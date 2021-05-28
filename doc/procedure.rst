@@ -79,4 +79,39 @@ temps en heures depuis le début du suivi des sondes, switch (1 ou 0) pour défi
 Il y a deux fichiers tsv: un pour les runs avec convection, l'autre pour les runs dans convection.
 Le script `processing.m` va chercher automatiquement les bons fichiers.
 
-
+Protocole d'acuiqisition des images point par point
+---------------------
+* Allumer le laser, les caméras et le bain thermique du laser
+* Attendre que le bain thermique du laser atteigne la température de consigne (20°C)
+* Pendant que le bain thermique du laser refroidit, sur le PC de manip (Plume), lancer:
+  Camware, OPSL (logiciel de contrôle laser), Anaconda Promptn et Notepadd++ (ou autre édtieur de texte)
+* Vérifier les paramètres des caméras via Camware: Delay 0, Exposure 95ms, Trigger mode Ext. Exp. Start, Pixel Clock 100MHz
+* Sur OPSL, cliquer sur la clé (qui est ON par défaut), puis sur Control -> Local
+* Dans Anaconda Prompt, naviguer vers D:\Toupoint\thermal_plumes\data
+* Dans Notepadd++, ouvir D:\Toupoint\thermal_plumes\data\trigger_burst.py et sélectionner le nombre d'images voulul
+* Lorsque le bain thermique du laser a atteint la consigne, relever la température de la pièce, donnée par la sonde PT100 externe
+* Insérer la sonde PT100 externe dans la cellule parle deuxième tube débouchant en partant de la gauche
+  attendre quelques points pour obtenir la mesure de température
+* Retirer la sonde PT100 externe, reboucher le tube débouchant
+* Reporter sur la spreadheet correspondante (conv on ou off) les valeurs de la température de la pièce,
+  à l'intérieur de la cellule, et dans les plaques, et les autres informations requises
+* Eteindre la lumière dans la salle, allumer la lumière "laser" à l'extérieur de la salle
+* Fermer le rideau laser, retirer les caches en papier des caméras et accrocher la blouse "fond noir" derrière les caméras
+* Eteindre l'écran du PC contrôlant les sondes de température et la convection (Joe)
+* Sur Camware, mettre les caméras en attente d'un trigger en cliquant sur Record (l'interface deviendra rouge)
+* Si premier run de la journée, lancer trigger_burst.py avec 10 images sans illumination laser pour acquérir l'offset
+* Eteindre l'écran du PC de manip durant l'acquisition pour diminuer la luminosité dans la salle
+* Sinon, tourner la clé sur ON sur le boîtier de contrôle laser, définir une puissance de 4W sur OPSL et cliquer sur la clé
+* Lancer un chrono de 2min
+* A l'issue de ces deux minutes, ouvrir le shutter, et exécuter trigger_burst.py avec le nombre d'images voulu
+* Eteindre l'écran du PC de manip durant l'acquisition
+* Une fois l'acquisition terminée, couper le laser via OPSL, puis en tournant la clé sur le boîtier, et enfin fermer le shutter
+* Dans Camware, vérifier dans le Recorder (en bas à gauche) les timestamps des images, qui doivent être synchronisées entre les deux caméras
+(en ignorant les 5 premières images, qui ne le sont jamais).
+* Si elles le sont, File -> Save Raw Recorder Sequence (ou Ctrl + S), et enregistrer les images dans
+  D:\Toupoint\thermal_plumes\data\conv_[on/off]\[expdate]\run[run_number]\[exp_date]_run[run_number]
+* Valider le prompt de changement de nom, faire Esc à la demande de commentaire
+* Remettre les caches en papier sur les caméras, rallumer la lumière, éteinre la lumière "laser"
+* Copier le fichier .db contenant les données de température du run effecuté de Joe vers Plume
+* Ouvrir ce fichier (via DB Brower for SQlite par exmeple), et exporter le conetnu de "log" vers
+  D:\Toupoint\thermal_plumes\data\temperature_probes\[exp_date].tsv
