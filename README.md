@@ -1,10 +1,12 @@
+[![Documentation Status](https://readthedocs.org/projects/plumex-lif/badge/?version=latest)](https://plumex-lif.readthedocs.io/en/latest/?badge=latest)
+
 # Scripts de traitement de LIF
 
 Dans ce dépôt se trouvent les scripts écrits par Clément Toupoint pendant son
 [séjour post-doctoral](https://plumexlyon.github.io/arrivee-de-clement-toupoint.html)
 dans le projet [PlumeX](https://plumexlyon.github.io/pages/a-propos.html).
 
-Le point d'entrée principal est `processing_v19.m` dans le dossier `processing`.
+La documentation est disponible [en ligne](https://plumex-lif.readthedocs.io/en/latest/).
 
 Le code s'appuie sur celui de [Jean-Yves Bouguet](http://www.vision.caltech.edu/bouguetj/)
 pour la calibration, modifié pour notre usage (dans `processing/calibration`).
