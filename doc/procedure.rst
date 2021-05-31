@@ -7,7 +7,7 @@ Calibration spatiale et distorsions
 On prépare la calibration spatiale avant de fermer la cellule, avec la cellule remplie d'eau (pas de
 colorant).
 
-* On utilise une mire (empruntée à Facundo) que l'on déplace dans la cuve remplie d'eau.
+* On utilise une mire (empruntée à Facundo, faite par HexisGroup) que l'on déplace dans la cuve remplie d'eau.
   On fait 20 plans, donc au moins 1 plan dans le plan de la nappe laser.
 
 * La routine `camera_calibrationv11.m`, adaptée du code de calibration de
@@ -80,3 +80,37 @@ Il y a deux fichiers tsv: un pour les runs avec convection, l'autre pour les run
 Le script `processing.m` va chercher automatiquement les bons fichiers.
 
 
+Protocole point à point
+---------------------
+* Allumer le bain thermique du laser, le laser et les deux caméras
+* Appuyer sur "start" sur le bain thermique du laser pour lancer le refroidissement
+* Sur le PC de manip (plume), lancer CamWare, OPSL (logiciel de contrôle du laser), Notepad++ (ou autre éditeur de texte), 
+  et Anaconda Prompt
+* Naviguer dans anaconda Prompt vers D:\Toupoint\thermal_plumes\data
+* Ouvrir avec Notepadd++ D:\Toupoint\thermal_plumes\data\trigger_burst.py, y régler le nombre d'images et la fraquence d'acuisition
+* Lorsque le bain thermique du laser a atteint la température de consigne, noter la température de la pièce indiquée
+  par la sonde PT-100 externe
+* Plonger la sonde de température externe dans la cellule, via le deuxièmme tube en partant de la gauche
+* Laisser la sponde de température acquérir quelques points, puis noter la température obtenue dans la spreadhseet correspondante
+* Noter le nom du fichier .db contenant les données des sondes de température, ainsi que le temps 
+* Remplir le reste des entrées de la spreadsheet
+* Retirer le cache en papier des caméras, accrocher la blouse "fond noir" derrière les caméras
+* Eteindre la lumière dans la salle, allumer le voyant signalant l'utilisation du laser dans la pièce, et fermer le rideau laser
+* Mettre les caméras en attente d'un trigger en cliquant sur Record
+* Eteindre l'écran du PC de'acquisition de la température (Joe)
+* Mettre les lunettes laser, régler dans OPSL la puissance laser voulue (4W généralement), Tourner la clé du boîter de
+  contrôle laser sur ON, tourner la clé, mais garder le shutter du laser fermé
+* Attendre 2min alors que le laser tire
+* Ouvrir le shutter du laser
+* Via Anaconda Prompt, exécuter python trigger_burst.py
+* Eteindre l'écran du PC de manip (Plume)
+* On peut rallumer les écrans une fois l'acquisition terminée
+* Une fois l'acquisition terminée, vérifier sur la partie Recorder de Camware (en bas à gauche) que les images sont synchronisées
+  sur les deux caméras
+* Etindre le laser via OPSL, puis tourner la clé sur OFF sur le boîter de contrôle du laser, et enfin fermer le shutter
+* Si c'est OK, File -> Save Raw Recorder Sequence -> D:\Toupoint\thermal_plumes\conv_[on/off]\[exp_date]\run[run_nulmber]\
+* Vérifier que le format des fichiers est 16 bits TIFF file
+* Pendant l'enregistrement des images, on peut remettre les caches sur les caméras, rallumer la lumière dans la pièce et
+  éteidre la lumière de signalisation du laser )à l'extérieur de la salle
+* Copier depuis Joe le fichier .db contenant les informations en température du run effectué
+* Exporter les données de "log" en .tsv via DB Browser for SQ Lite dans D:\Toupoint\thermal_plumes\data\temperature_probes\
