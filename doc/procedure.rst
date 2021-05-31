@@ -7,7 +7,7 @@ Calibration spatiale et distorsions
 On prépare la calibration spatiale avant de fermer la cellule, avec la cellule remplie d'eau (pas de
 colorant).
 
-* On utilise une mire (empruntée à Facundo) que l'on déplace dans la cuve remplie d'eau.
+* On utilise une mire (empruntée à Facundo, faite par HexisGroup) que l'on déplace dans la cuve remplie d'eau.
   On fait 20 plans, donc au moins 1 plan dans le plan de la nappe laser.
 
 * La routine `camera_calibrationv11.m`, adaptée du code de calibration de
