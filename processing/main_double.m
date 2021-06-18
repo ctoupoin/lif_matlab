@@ -4,14 +4,14 @@
 %
 %--------------------------------------------------------------------------
 %
-%   *Author :* Cl\'ement Toupoint
+%   *Author :* Cl/'ement Toupoint
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %% Paths
 
-paths.root = '../';
+paths.root = '/Volumes/Transcend/Data/LIF/sample/';
 paths.ext_functions = [paths.root '/ext_functions'];
 
 paths.data = [paths.root 'data/'];

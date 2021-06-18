@@ -115,7 +115,7 @@ for ii = 1:size(paths.target_plan,1)
     
     if sum(ind_cam1) == 0
         ind_cam1 = ismember(vertcat(imgs.name),'C1');
-        ind_cam1 = ind_cam1(:,17) == true;
+        ind_cam1 = ind_cam1(:,18) == true;
         ind_cam1 = ind_cam1';
         ind_cam2 = ~ind_cam1;
     end
@@ -496,7 +496,7 @@ c2_synth_d = synthetic_grid_creation(inclination2_d,d_pts,gamma2_d,O_2_d,num_tar
 %% Points matching
 
 % Camera 1
-if ~exist(paths.c1_matched,'file')
+if ~exist(paths.c1_matched_ud,'file')
     [c1_matched_u,r1_matched_u] = points_matching(c1_u,r1_u,c1_synth_u,c1_matched_u,r1_matched_u,num_target_plans);
     [c1_matched_d,r1_matched_d] = points_matching(c1_d,r1_d,c1_synth_d,c1_matched_d,r1_matched_d,num_target_plans);
     
@@ -506,16 +506,16 @@ if ~exist(paths.c1_matched,'file')
     r1_matched.u = r1_matched_u;
     r1_matched.d = r1_matched_d;
 else
-    load(paths.c1_matched)
-    load(paths.r1_matched)
+    load(paths.c1_matched_ud)
+    load(paths.r1_matched_ud)
     
-    c1_matched_u = c1_matched.u;
-    c1_matched_d = c1_matched.d;
+    c1_matched_u = c1_matched_ud.u;
+    c1_matched_d = c1_matched_ud.d;
 end
 
 
 % Camera 2
-if ~exist(paths.c2_matched,'file')
+if ~exist(paths.c2_matched_ud,'file')
     [c2_matched_u,r2_matched_u] = points_matching(c2_u,r2_u,c2_synth_u,c2_matched_u,r2_matched_u,num_target_plans);
     [c2_matched_d,r2_matched_d] = points_matching(c2_d,r2_d,c2_synth_d,c2_matched_d,r2_matched_d,num_target_plans);
     
@@ -525,11 +525,11 @@ if ~exist(paths.c2_matched,'file')
     r2_matched.u = r2_matched_u;
     r2_matched.d = r2_matched_d;
 else
-    load(paths.c2_matched)
-    load(paths.r2_matched)
+    load(paths.c2_matched_ud)
+    load(paths.r2_matched_ud)
     
-    c2_matched_u = c2_matched.u;
-    c2_matched_d = c2_matched.d;
+    c2_matched_u = c2_matched_ud.u;
+    c2_matched_d = c2_matched_ud.d;
 end
 
 

@@ -23,9 +23,9 @@ format_imgs = 'tif';
 
 addpath(genpath(paths.ext_functions));
 
-paths.target = [paths.data 'target/'];
-paths.params_cam0 = [paths.misc 'params_cam0.mat'];
-paths.params_cam1 = [paths.misc 'params_cam1.mat'];
+paths.target = [paths.data 'calibration_target/'];
+paths.params_cam0 = [paths.misc 'params_cam1.mat'];
+paths.params_cam1 = [paths.misc 'params_cam2.mat'];
 
 data_files = dir(paths.target);
 count = 0;
